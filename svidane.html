@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Наше свидание 💗</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Nunito',sans-serif;
+    }
+    .calendar {
+    display: grid;
+    grid-template-columns: repeat(3, 90px);
+    gap: 18px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.day {
+    background: white;
+    border-radius: 20px;
+    padding: 20px 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.15);
+}
+
+.day:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+.day-name {
+    font-size: 18px;
+    color: #ff5fa2;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.day-number {
+    font-size: 28px;
+    color: #ff85b5;
+    font-weight: bold;
+}
+
+    body{
+      background: linear-gradient(180deg,#ffe4ef,#fff5f8);
+      min-height:100vh;
+      overflow:hidden;
+      color:#ff4f8b;
+    }
+
+    .floating{
+      position:absolute;
+      font-size:22px;
+      animation: float 6s infinite ease-in-out;
+      opacity:.7;
+    }
+
+    .f1{top:5%;left:8%;}
+    .f2{top:12%;right:10%;}
+    .f3{bottom:10%;left:10%;}
+    .f4{bottom:15%;right:12%;}
+
+    @keyframes float{
+      0%{transform:translateY(0px);}
+      50%{transform:translateY(-12px);}
+      100%{transform:translateY(0px);}
+    }
+
+    .screen{
+      width:100%;
+      min-height:100vh;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      animation:fade .5s ease;
+    }
+
+    .active{
+      display:flex;
+    }
+
+    @keyframes fade{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    .card{
+      width:100%;
+      max-width:420px;
+      background:rgba(255,255,255,.75);
+      backdrop-filter: blur(12px);
+      border-radius:32px;
+      padding:30px 22px;
+      text-align:center;
+      box-shadow:0 10px 40px rgba(255,120,170,.18);
+      border:2px solid rgba(255,255,255,.7);
+    }
+
+    .emoji{
+      font-size:55px;
+      margin-bottom:12px;
+    }
+
+    h1{
+      font-size:30px;
+      line-height:1.3;
+      margin-bottom:14px;
+      color:#ff4f8b;
+    }
+
+    p{
+      color:#c76b91;
+      margin-bottom:25px;
+      font-size:17px;
+    }
+
+    .btn{
+      background:#ff77aa;
+      color:white;
+      border:none;
+      padding:16px 24px;
+      border-radius:18px;
+      font-size:17px;
+      cursor:pointer;
+      width:100%;
+      transition:.25s;
+      box-shadow:0 6px 15px rgba(255,119,170,.3);
+      font-weight:700;
+    }
+
+    .btn:hover{
+      transform:scale(1.03);
+      background:#ff5f9a;
+    }
+
+    .options{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:20px;
+    }
+
+    .option{
+      background:white;
+      border-radius:22px;
+      padding:18px 12px;
+      cursor:pointer;
+      transition:.25s;
+      border:2px solid transparent;
+      box-shadow:0 4px 15px rgba(255,120,170,.08);
+    }
+
+    .option:hover{
+      transform:translateY(-4px);
+      border-color:#ff9cc0;
+    }
+
+    .option .icon{
+      font-size:38px;
+      margin-bottom:8px;
+    }
+
+    .option span{
+      display:block;
+      font-size:15px;
+      font-weight:700;
+      color:#ff5b93;
+    }
+
+    .result{
+      background:white;
+      padding:14px;
+      border-radius:18px;
+      margin-top:12px;
+      color:#ff5b93;
+      font-weight:700;
+      box-shadow:0 4px 15px rgba(255,120,170,.08);
+    }
+
+    .heart{
+      position:absolute;
+      color:#ff8fb7;
+      animation: hearts 5s linear infinite;
+      font-size:20px;
+    }
+
+    @keyframes hearts{
+      0%{
+        transform:translateY(100vh) scale(1);
+        opacity:0;
+      }
+      20%{
+        opacity:1;
+      }
+      100%{
+        transform:translateY(-120px) scale(1.5);
+        opacity:0;
+      }
+    }
+
+    @media(max-width:480px){
+      h1{
+        font-size:25px;
+      }
+
+      .card{
+        padding:26px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="floating f1">🐱</div>
+<div class="floating f2">💗</div>
+<div class="floating f3">🌸</div>
+<div class="floating f4">✨</div>
+
+<!-- Screen 1 -->
+<section class="screen active" id="screen1">
+  <div class="card">
+    <div class="emoji">💌</div>
+
+    <h1> Осьминожка. Проведем вместе врямя? 💗</h1>
+
+    <p>
+      У меня есть пару вопросиков)... 
+    </p>
+
+    <button class="btn" onclick="nextScreen(2)">
+      Поехали ✨
+    </button>
+  </div>
+</section>
+
+<!-- Screen 2 -->
+<section class="screen" id="screen2">
+  <div class="card">
+    <div class="emoji">📅</div>
+
+
+<h1>Выбери наш день 💖</h1>
+
+<div class="calendar">
+
+    <div class="day" onclick="chooseDay('🌷 Понедельник')">
+        <div class="day-name">Пн</div>
+        <div class="day-number">1</div>
+    </div>
+
+    <div class="day" onclick="chooseDay('☁️ Вторник')">
+        <div class="day-name">Вт</div>
+        <div class="day-number">2</div>
+    </div>
+
+    <div class="day" onclick="chooseDay('✨ Среда')">
+        <div class="day-name">Ср</div>
+        <div class="day-number">3</div>
+    </div>
+
+    <div class="day" onclick="chooseDay('💖 Четверг')">
+        <div class="day-name">Чт</div>
+        <div class="day-number">4</div>
+    </div>
+
+    <div class="day" onclick="chooseDay('🎀 Пятница')">
+        <div class="day-name">Пт</div>
+        <div class="day-number">5</div>
+    </div>
+
+    <div class="day" onclick="chooseDay('🌙 Суббота')">
+        <div class="day-name">Сб</div>
+        <div class="day-number">6</div>
+    </div>
+
+    <div class="day" onclick="chooseDay('☀️ Воскресенье')">
+        <div class="day-name">Вс</div>
+        <div class="day-number">7</div>
+    </div>
+
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- Screen 3 -->
+<section class="screen" id="screen3">
+  <div class="card">
+    <div class="emoji">🍓</div>
+
+    <h1>Что будем кушать? 😋</h1>
+
+    <div class="options">
+      <div class="option" onclick="chooseFood('🍕 Пицца')">
+        <div class="icon">🍕</div>
+        <span>Пицца</span>
+      </div>
+
+      <div class="option" onclick="chooseFood('🍣 Суши')">
+        <div class="icon">🍣</div>
+        <span>Суши</span>
+      </div>
+
+      <div class="option" onclick="chooseFood('🍰 Десерты')">
+        <div class="icon">🍰</div>
+        <span>Сладкое</span>
+      </div>
+
+      <div class="option" onclick="chooseFood('☕ Кофе')">
+        <div class="icon">☕</div>
+        <span>Кофечино</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Screen 4 -->
+<section class="screen" id="screen4">
+  <div class="card">
+    <div class="emoji">🌆</div>
+
+    <h1>Как проведем вечер? ✨</h1>
+
+    <div class="options">
+      <div class="option" onclick="chooseMood('🎬 Кино')">
+        <div class="icon">🎬</div>
+        <span>Кино</span>
+      </div>
+
+      <div class="option" onclick="chooseMood('🌃 Прогулка')">
+        <div class="icon">🌃</div>
+        <span>Прогулка</span>
+      </div>
+
+      <div class="option" onclick="chooseMood('☕ Кафе')">
+        <div class="icon">☕</div>
+        <span>Кафе</span>
+      </div>
+
+      <div class="option" onclick="chooseMood('👗Шоппинг')">
+        <div class="icon">👗</div>
+        <span>Шоппинг</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Screen 5 -->
+<section class="screen" id="screen5">
+  <div class="card">
+    <div class="emoji">💞</div>
+
+    <h1>Тогда это официально наше свидание 💗</h1>
+
+    <div class="result" id="resultDay"></div>
+    <div class="result" id="resultFood"></div>
+    <div class="result" id="resultMood"></div>
+
+    <p style="margin-top:22px;">
+      Теперь я буду ждать этот день еще сильнее 😌
+    </p>
+  </div>
+</section>
+
+<script>
+  let selectedDay = "";
+  let selectedFood = "";
+  let selectedMood = "";
+
+  function nextScreen(number){
+    document.querySelectorAll('.screen').forEach(screen=>{
+      screen.classList.remove('active');
+    });
+
+    document.getElementById('screen'+number).classList.add('active');
+  }
+
+  function chooseDay(day){
+    selectedDay = day;
+    nextScreen(3);
+  }
+
+  function chooseFood(food){
+    selectedFood = food;
+    nextScreen(4);
+  }
+
+  function chooseMood(mood){
+    selectedMood = mood;
+
+    document.getElementById('resultDay').innerText =
+      "📅 День: " + selectedDay;
+
+    document.getElementById('resultFood').innerText =
+      "🍓 Еда: " + selectedFood;
+
+    document.getElementById('resultMood').innerText =
+      "✨ Вечер: " + selectedMood;
+
+    nextScreen(5);
+  }
+
+  // floating hearts
+  setInterval(()=>{
+    const heart = document.createElement('div');
+
+    heart.classList.add('heart');
+    heart.innerHTML = '💗';
+
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (16 + Math.random()*20) + 'px';
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+      heart.remove();
+    },5000);
+
+  },700);
+</script>
+
+</body>
+</html>

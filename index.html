@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мое Портфолио</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
+    overflow-x:hidden;
+    transition:0.5s;
+}
+
+body.light{
+    background:#f1f5f9;
+    color:#111;
+}
+
+/* HEADER */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 10%;
+    position:fixed;
+    width:100%;
+    top:0;
+    background:#0f172a;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#38bdf8;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#38bdf8;
+}
+
+/* HERO */
+
+.hero{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    flex-direction:column;
+    padding:20px;
+}
+
+.hero img{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    object-fit:cover;
+
+    border:5px solid #38bdf8;
+
+    box-shadow:
+    0 0 20px #38bdf8,
+    0 0 60px rgba(56,189,248,0.5);
+
+    animation:float 4s ease-in-out infinite;
+}
+
+.hero h1{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.hero span{
+    color:#38bdf8;
+}
+
+.hero p{
+    max-width:600px;
+    color:#cbd5e1;
+    line-height:1.7;
+}
+
+.btn{
+    margin-top:30px;
+    display:inline-block;
+    padding:14px 35px;
+    background:#38bdf8;
+    color:white;
+    border-radius:12px;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+/* SKILLS */
+
+.skills{
+    padding:100px 10%;
+}
+
+.title{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:50px;
+}
+
+.skills-box{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.skill{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 8px 32px rgba(0,0,0,0.2);
+
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    transition:0.4s;
+}
+
+.skill:hover{
+    transform:translateY(-8px);
+}
+
+.skill h3{
+    margin-top:15px;
+    color:#38bdf8;
+}
+
+/* PROJECTS */
+
+.projects{
+    padding:100px 10%;
+}
+
+.project-box{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.project{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 8px 32px rgba(0,0,0,0.2);
+
+    border-radius:20px;
+    overflow:hidden;
+    transition:0.4s;
+}
+
+.project img{
+    width:100%;
+}
+
+.project-content{
+    padding:20px;
+}
+
+.project-content h3{
+    margin-bottom:10px;
+}
+
+/* CONTACT */
+
+.contact{
+    padding:100px 10%;
+    text-align:center;
+}
+
+.contact a{
+    display:inline-block;
+    margin:10px;
+    padding:14px 25px;
+    background:#38bdf8;
+    color:white;
+    border-radius:12px;
+    text-decoration:none;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#94a3b8;
+}
+.skill:hover,
+.project:hover{
+    transform:
+    perspective(1000px)
+    rotateX(8deg)
+    rotateY(-8deg)
+    scale(1.05);
+}
+.skill:hover,
+.project:hover{
+    transform:
+    perspective(1000px)
+    rotateX(8deg)
+    rotateY(-8deg)
+    scale(1.05);
+
+    transition:0.4s;
+}
+.hero h1{
+    animation:fadeUp 1s ease;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+    
+}
+#particles-js{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+#themeToggle{
+    background:#38bdf8;
+    border:none;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+    color:white;
+}
+#musicBtn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#38bdf8;
+    border:none;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+#musicBtn{
+
+    position:fixed;
+    right:25px;
+    bottom:25px;
+
+    width:65px;
+    height:65px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#38bdf8;
+    color:white;
+
+    font-size:26px;
+    cursor:pointer;
+
+    box-shadow:0 0 20px rgba(56,189,248,0.6);
+
+    transition:0.3s;
+}
+
+#musicBtn:hover{
+    transform:scale(1.1);
+}
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+        padding:20px;
+    }
+
+    nav{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    nav a{
+        margin:10px;
+        font-size:14px;
+    }
+
+    .hero h1{
+        font-size:35px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .hero img{
+        width:160px;
+        height:160px;
+    }
+
+    .title{
+        font-size:30px;
+    }
+
+    .skills,
+    .projects,
+    .contact{
+        padding:80px 5%;
+    }
+
+    .btn{
+        padding:12px 25px;
+        font-size:14px;
+    }
+
+    #musicBtn{
+        width:55px;
+        height:55px;
+        font-size:22px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+<div id="particles-js"></div>
+<header>
+    <button id="themeToggle">🌙</button>
+    <div class="logo">Timurov</div>
+
+    <nav>
+    <a href="index.html">Главная</a>
+    <a href="skills.html">Навыки</a>
+    <a href="projects.html">Проекты</a>
+    <a href="contact.html">Контакты</a>
+</nav>
+</header>
+
+<section class="hero">
+
+    <img src="images/my_photo.jpg">
+
+    <h1>Привет, я <span>Курбанали</span></h1>
+
+    <p>
+        Я frontend разработчик.
+        Создаю красивые сайты, интерфейсы и современные web проекты.
+    </p>
+
+    <a href="#" class="btn">Мои проекты</a>
+
+</section>
+
+<section class="skills" data-aos="fade-up">
+
+    <h2 class="title">Навыки</h2>
+
+    <div class="skills-box">
+
+        <div class="skill">
+            <h3>HTML</h3>
+            <p>Создание структуры сайта</p>
+        </div>
+
+        <div class="skill">
+            <h3>CSS</h3>
+            <p>Красивый дизайн и анимации</p>
+        </div>
+
+        <div class="skill">
+            <h3>JavaScript</h3>
+            <p>Интерактивность сайта</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="projects">
+
+    <h2 class="title">Проекты</h2>
+
+    <div class="project-box">
+
+        <div class="project" data-aos="zoom-in">
+            <img src="https://picsum.photos/500/300">
+
+            <div class="project-content">
+                <h3>Dating Website</h3>
+                <p>Современный сайт знакомств</p>
+            </div>
+        </div>
+
+        <div class="project" data-aos="zoom-in">
+            <img src="https://picsum.photos/501/300">
+
+            <div class="project-content">
+                <h3>Restaurant Website</h3>
+                <p>Сайт ресторана</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="contact">
+
+    <h2 class="title">Контакты</h2>
+
+    <a href="telegram.html">Telegram</a>
+<a href="https://github.com/">GitHub</a>
+<a href="instagram.html">Instagram</a>
+
+</section>
+
+<footer>
+    © 2026 Timurov Portfolio
+</footer>
+
+</script>
+<audio id="bgMusic" loop>
+    <source src="music/my_music.mp3" type="audio/mp3">
+</audio>
+
+<button id="musicBtn">🎵</button>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+
+AOS.init();
+
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 70 },
+    size: { value: 3 },
+    color: { value: "#38bdf8" },
+    line_linked: {
+      enable: true,
+      color: "#38bdf8"
+    },
+    move: {
+      speed: 2
+    }
+  }
+});
+
+const themeBtn = document.getElementById("themeToggle");
+
+themeBtn.onclick = () => {
+    document.body.classList.toggle("light");
+};
+
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+musicBtn.onclick = () => {
+
+    if(music.paused){
+
+        music.play();
+        musicBtn.innerHTML = "⏸";
+
+    }else{
+
+        music.pause();
+        musicBtn.innerHTML = "🎵";
+
+    }
+
+};
+
+</script>
+
+</body>
+</html>
